@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Check my workouts</title>
+    <style>
+    </style>
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="">
+        
+    </div>
+
+    <script>
+        (async () => {
+            const url = "https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.xlsx";
+            const data = await (await fetch(url)).arrayBuffer();
+            const workbook = XLSX.read(data);
+
+            console.log("workbook.Sheets ", workbook.Sheets)
+            console.log(workbook.Sheets.Homme["A1"].h)
+        })();
+    </script>
+</body>
+
+</html>
