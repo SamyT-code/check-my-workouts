@@ -22,11 +22,68 @@
         (async () => {
             const url = "https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.xlsx";
             const data = await (await fetch(url)).arrayBuffer();
-            const workbook = XLSX.read(data);
 
+            const workbook = XLSX.read(data);
             console.log("workbook.Sheets ", workbook.Sheets)
+
+            const ws = XLSX.utils.sheet_to_json(workbook.Sheets.Homme)
+            console.log(ws)
+
+            var categories = []
+            var exercices = []
+            
+            ws.forEach(r => {
+
+                if (categories.indexOf(r.Categorie) === -1)
+                    categories.push(r.Categorie)
+
+                if (exercices.indexOf(r.Exercice) === -1)
+                    exercices.push(r.Exercice)
+
+            });
+            console.log(categories)
+            console.log(exercices)
+
             console.log(workbook.Sheets.Homme["A1"].h)
+
+            var range = XLSX.utils.decode_range(workbook.Sheets.Homme['!ref'])
+            var rowCount = range.e.r
+            var colCount = range.e.c
         })();
+
+        
+        JSC.fetch("https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.csv")
+            .then(response => response.text())
+            .then(text => {
+                console.log("text", text)
+                console.log(JSC.csv2Json(text))
+                console.log("regex", csvToJsonRegex(text))
+
+            });
+
+        function csvToJsonRegex(csvString) {
+            const regex = /,(?=(?:[^"]*"[^"]*")*(?![^"]*"))/;
+            const rows = csvString
+                .split("\n");
+            const headers = rows[0]
+                .split(regex);
+            const jsonData = [];
+
+            for (let i = 1; i < rows.length; i++) {
+                const values = rows[i]
+                    .split(regex);
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]
+                        .trim()] = values[j]
+                }
+                jsonData.push(obj);
+            }
+
+            return jsonData;
+        }
+
+
     </script>
 </body>
 
