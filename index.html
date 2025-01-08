@@ -12,27 +12,94 @@
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 
     <style>
+        body {
+            font-family: 'Helvetica'
+        }
+
+        #main {
+            max-width: 900px;
+        }
+
+        h3,
+        h4 {
+            display: inline-block;
+        }
+
         .hide {
             display: none;
         }
 
         .cat_container {}
+
+        .red {
+            color: red;
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        .yellow {
+            color: orange;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .green {
+            color: green;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Check my workouts</h1>
+    <div id="main">
 
-    <h2>Your Name:</h2>
-    <input type="text" id="name">
+        <h1>Check my workouts</h1>
+        <input type="date" id="date">
 
-    <div id="container"></div>
+        <h3>Ton nom:</h3>
+        <input type="text" id="name">
 
-    <button id="submit">Submit</button>
+        <h3 class="">Âge:</h3>
+        <input type="number" id="age" value="20" class="">
 
-    <div id="summary"></div>
+        <h3>Sexe:</h3>
+        <input type="checkbox" id="sexe" checked>
+
+
+
+
+        <div id="container"></div>
+
+        <button id="submit" onclick="submit()">Fini!</button>
+
+        <div id="summary" class="hide">
+            <button onclick="hideSummary()">X</button>
+            <div id="container_summary"></div>
+        </div>
+    </div>
 
     <script>
+        var container = document.getElementById("container")
+
+        var input_date = document.getElementById("date")
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+        input_date.value = new Date().toDateInputValue();
+        var input_name = document.getElementById("name")
+        var input_age = document.getElementById("age")
+        var input_sexe = document.getElementById("sexe")
+
+
+        var summary = document.getElementById("summary")
+        var container_summary = document.getElementById("container_summary")
+
+
         // (async () => {
         //     const url = "https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.xlsx";
         //     const data = await (await fetch(url)).arrayBuffer();
@@ -67,20 +134,19 @@
 
 
         //JSC.fetch("https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.csv")
+        var csv
+        var cat_exes = []
+
         JSC.fetch("./indices.csv")
             .then(response => response.text()) // promise
             .then(text => {
-                var csv = csvToJsonRegex(text)
+                csv = csvToJsonRegex(text)
                 console.log("text", text)
                 console.log("csv.json", csv)
 
-                var cat_exes = []
-                var container = document.getElementById("container")
 
                 csv.forEach(line => {
-                    var cat_exe = Object.create({ Categorie: line.Categorie, Exercice: line.Exercice })
-                    var enCat = encode(line.Categorie)
-                    var enExe = encode(line.Exercice)
+                    var cat_exe = Object.create({ Categorie: line.Categorie, Exercice: line.Exercice, Unite: line.Unite.trim() })
 
                     console.log("", `${cat_exe.Categorie} / ${cat_exe.Exercice} : ${isCatExeInArray(cat_exes, cat_exe)}`)
 
@@ -91,20 +157,9 @@
                         case 2: // Nouvel exercice sous categorie existant
                             cat_exes.push(cat_exe)
 
-                            var catDiv = document.getElementById(`${enCat}_container`)
+                            var catDiv = document.getElementById(`container_${encode(line.Categorie)}`)
 
-                            var exeDiv = document.createElement("div")
-                            exeDiv.setAttribute("id", enExe)
-                            exeDiv.setAttribute("class", "exe")
-
-                            var textExe = document.createElement("h3")
-                            textExe.setHTMLUnsafe(line.Exercice)
-                            exeDiv.appendChild(textExe)
-
-                            var input = document.createElement("input")
-                            input.setAttribute("type", "number")
-                            input.setAttribute("id", `${enExe}_input`)
-                            exeDiv.appendChild(input)
+                            var exeDiv = createExe(cat_exe)
 
                             catDiv.appendChild(exeDiv)
                             break;
@@ -113,8 +168,8 @@
                             cat_exes.push(cat_exe)
 
                             var catContainer = document.createElement("div")
-                            catContainer.setAttribute("id", `${enCat}_container`)
-                            catContainer.setAttribute("class", "cat_container")
+                            catContainer.setAttribute("id", `container_${encode(line.Categorie)}`)
+                            catContainer.setAttribute("class", "container_cat")
                             catContainer.setAttribute("class", "hide")
 
                             var textCat = document.createElement("h2")
@@ -124,22 +179,9 @@
                             })
                             container.appendChild(textCat)
 
-                            var exeDiv = document.createElement("div")
-                            exeDiv.setAttribute("id", enExe)
-                            exeDiv.setAttribute("class", "exe")
-
-                            var textExe = document.createElement("h3")
-                            textExe.setHTMLUnsafe(line.Exercice)
-                            exeDiv.appendChild(textExe)
-
-                            var input = document.createElement("input")
-                            input.setAttribute("type", "number")
-                            input.setAttribute("id", `${enExe}_input`)
-                            exeDiv.appendChild(input)
-
-                            console.log(catDiv)
-
+                            var exeDiv = createExe(cat_exe)
                             catContainer.appendChild(exeDiv)
+
                             container.appendChild(catContainer)
 
                             break;
@@ -151,23 +193,6 @@
 
                 console.log("cat-exes", cat_exes)
             });
-
-        function encode(str) {
-            return str.replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_")
-        }
-
-        function isCatExeInArray(array, cat_exe) {
-
-            const foundCatExe = array.find((e) => cat_exe.Categorie === e.Categorie && cat_exe.Exercice === e.Exercice);
-            if (typeof foundCatExe !== "undefined")
-                return 1 // Exercice et categorie existent deja
-            const foundCat = array.find((e) => cat_exe.Categorie == e.Categorie);
-            if (typeof foundCat !== "undefined")
-                return 2 // Nouvel exercice sous categorie existant
-            return 3 // Nouvelle catégorie et nouvel exercice
-        }
-
-
 
 
         function csvToJsonRegex(csvString) {
@@ -192,6 +217,184 @@
             return jsonData;
         }
 
+        function encode(str) {
+            return str.replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_")
+        }
+
+        function isCatExeInArray(array, cat_exe) {
+
+            const foundCatExe = array.find((e) => cat_exe.Categorie === e.Categorie && cat_exe.Exercice === e.Exercice);
+            if (typeof foundCatExe !== "undefined")
+                return 1 // Exercice et categorie existent deja
+            const foundCat = array.find((e) => cat_exe.Categorie == e.Categorie);
+            if (typeof foundCat !== "undefined")
+                return 2 // Nouvel exercice sous categorie existant
+            return 3 // Nouvelle catégorie et nouvel exercice
+        }
+
+        function createExe(obj) {
+
+            var exeDiv = document.createElement("div")
+            exeDiv.setAttribute("id", encode(obj.Exercice))
+            exeDiv.setAttribute("class", "exe")
+
+            var textExe = document.createElement("h3")
+            textExe.setHTMLUnsafe(obj.Exercice)
+            exeDiv.appendChild(textExe)
+
+
+            if (obj.Unite === "rep") {
+                var input = document.createElement("input")
+                input.setAttribute("type", "number")
+                input.setAttribute("id", `input_${encode(obj.Exercice)}`)
+                input.value = 0
+                exeDiv.appendChild(input)
+            }
+            else if (obj.Unite === "sec") {
+                var inputMin = document.createElement("input")
+                inputMin.setAttribute("type", "number")
+                inputMin.setAttribute("id", `input_${encode(obj.Exercice)}_min`)
+                inputMin.value = 0
+                exeDiv.appendChild(inputMin)
+
+
+                var textMin = document.createElement("h3")
+                textMin.setHTMLUnsafe("min")
+                exeDiv.appendChild(textMin)
+
+                var inputSec = document.createElement("input")
+                inputSec.setAttribute("type", "number")
+                inputSec.setAttribute("id", `input_${encode(obj.Exercice)}_sec`)
+                inputSec.value = 0
+                exeDiv.appendChild(inputSec)
+                
+                var textSec = document.createElement("h3")
+                textSec.setHTMLUnsafe("s")
+                exeDiv.appendChild(textSec)
+            }
+
+            return exeDiv
+        }
+
+        function submit() {
+            container_summary.setHTMLUnsafe('')
+
+            var age = input_age.value
+            var sexe = input_sexe.checked ? 'H' : 'F'
+
+
+            var textDate = document.createElement("h3")
+            textDate.setHTMLUnsafe(input_date.value)
+            container_summary.appendChild(textDate)
+
+            var textNom = document.createElement("h3")
+            textNom.setHTMLUnsafe(`${input_name.value} (${age}) : ${sexe}`)
+            container_summary.appendChild(textNom)
+
+
+            var desc = ""
+            var color = ""
+
+            cat_exes.forEach(cat_exe => {
+
+
+                if (cat_exe.Unite.trim() === "rep") {
+
+                    var exe_value = parseInt(document.getElementById(`input_${encode(cat_exe.Exercice)}`).value)
+
+                    if (exe_value > 0) {
+
+                        var exeDiv = document.createElement("div")
+                        var textExe = document.createElement("h3")
+                        textExe.setHTMLUnsafe(`${cat_exe.Exercice}: ${exe_value}`)
+                        exeDiv.appendChild(textExe)
+                        container_summary.appendChild(exeDiv)
+
+                        const indices = csv.filter((i) => cat_exe.Categorie === i.Categorie && cat_exe.Exercice === i.Exercice && i.Sexe === sexe)
+                        console.log(cat_exe.Categorie)
+                        console.log(cat_exe.Exercice)
+                        console.log(indices)
+
+                        if (indices.length > 0) {
+                            var textDesc = document.createElement("h3")
+                            var indice = indices[0]
+
+                            if (exe_value < indice.Orange) {
+                                desc = "Problématique"
+                                color = "red"
+                            } else if (exe_value < indice.Yellow) {
+                                desc = "Risques accrus"
+                                color = "orange"
+                            } else if (exe_value < indice.Blue) {
+                                desc = "Bien"
+                                color = "yellow"
+                            } else if (exe_value < indice.green) {
+                                desc = "Très bien"
+                                color = "blue"
+                            } else {
+                                desc = "Excellent"
+                                color = "green"
+                            }
+                            textDesc.setAttribute("class", color)
+                            textDesc.setHTMLUnsafe(desc)
+                            container_summary.appendChild(textDesc)
+                        }
+                    }
+                } else if (cat_exe.Unite.trim() === "sec") {
+
+
+                    var exe_value_min = parseInt(document.getElementById(`input_${encode(cat_exe.Exercice)}_min`).value)
+                    var exe_value_sec = parseInt(document.getElementById(`input_${encode(cat_exe.Exercice)}_sec`).value)
+
+                    if (exe_value_min > 0 || exe_value_sec > 0) {
+
+                        var valueSec = exe_value_min * 60 + exe_value_sec
+
+                        var exeDiv = document.createElement("div")
+                        var textExe = document.createElement("h3")
+                        textExe.setHTMLUnsafe(`${cat_exe.Exercice}: ${exe_value_min}:${exe_value_sec}`)
+                        exeDiv.appendChild(textExe)
+                        container_summary.appendChild(exeDiv)
+
+                        const indices = csv.filter((i) => cat_exe.Categorie === i.Categorie && cat_exe.Exercice === i.Exercice && i.Sexe === sexe)
+
+                        if (indices.length > 0) {
+                            var textDesc = document.createElement("h3")
+                            var indice = indices[0]
+
+                            if (valueSec < indice.Orange) {
+                                desc = "Problématique"
+                                color = "red"
+                            } else if (valueSec < indice.Yellow) {
+                                desc = "Risques accrus"
+                                color = "orange"
+                            } else if (valueSec < indice.Blue) {
+                                desc = "Bien"
+                                color = "yellow"
+                            } else if (valueSec < indice.green) {
+                                desc = "Très bien"
+                                color = "blue"
+                            } else {
+                                desc = "Excellent"
+                                color = "green"
+                            }
+                            textDesc.setAttribute("class", color)
+                            textDesc.setHTMLUnsafe(desc)
+                            container_summary.appendChild(textDesc)
+                        }
+                    }
+                }
+
+
+            });
+
+            summary.classList.remove("hide")
+
+        }
+
+        function hideSummary() {
+            summary.classList.add("hide")
+        }
 
     </script>
 </body>
