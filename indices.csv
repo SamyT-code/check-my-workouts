@@ -7,14 +7,10 @@ Force et endurance haut du corps,push up,19,H,0,30,40,60,80,rep
 Force et endurance haut du corps,push up,29,H,0,30,40,60,80,rep
 Force et endurance haut du corps,push up,19,F,0,30,40,60,80,rep
 Force et endurance haut du corps,push up,29,F,0,30,40,60,80,rep
-Deuxième catégorie,Autre exercice,19,H,0,30,40,60,80,rep
-Deuxième catégorie,Autre exercice,29,H,0,30,40,60,80,rep
-Deuxième catégorie,Autre exercice,19,F,0,30,40,60,80,rep
-Deuxième catégorie,Autre exercice,29,F,0,30,40,60,80,rep
-capacité cardio vasculaire,cardio,19,H,1,30,40,60,80,sec
-capacité cardio vasculaire,cardio,29,H,0,30,40,60,80,sec
-capacité cardio vasculaire,cardio,19,F,0,30,40,60,80,sec
-capacité cardio vasculaire,cardio,29,F,0,30,40,60,80,sec
+Capacité cardio vasculaire,cardio,19,H,1,30,40,60,80,sec
+Capacité cardio vasculaire,cardio,29,H,0,30,40,60,80,sec
+Capacité cardio vasculaire,cardio,19,F,0,30,40,60,80,sec
+Capacité cardio vasculaire,cardio,29,F,0,30,40,60,80,sec
 Force et endurance haut du corps,Chin up,19,H,0,1,2,3,4,rep
 Force et endurance haut du corps,Chin up,19,F,0,2,4,6,8,rep
 Habitude de vie,Alimentation,19,F,0,40,60,90,95,points
