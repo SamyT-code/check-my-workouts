@@ -82,6 +82,9 @@
             height: 1.3em;
             font-size: 2em;
             border: none;
+            padding: 0 !important;
+            padding-block: 0 !important;
+            padding-inline: 0 !important;
             color: gainsboro;
             background-color: #333;
         }
@@ -113,6 +116,9 @@
         #switch input {
             -webkit-appearance: none;
             position: absolute;
+            color: black;
+            height: 0;
+            width: 0;
         }
 
         #tab {
@@ -362,16 +368,22 @@
             text-align: center;
         }
 
-        footer>a {
-            color: whitesmoke;
+        a {
+            color: whitesmoke !important;
             font-weight: bold;
-            text-decoration: underline;
+            text-decoration: underline !important;
         }
     </style>
 </head>
 
 <body>
     <div id="main">
+        <noscript>
+            <h1>
+                <a href="https://www.enable-javascript.com/fr" target="_blank">Veuillez activer JavaScript pour utiliser
+                    cette application</a>
+            </h1>
+        </noscript>
         <div class="row">
             <h3>Date:</h3>
             <input type="date" id="date">
@@ -413,7 +425,7 @@
             <button id="close" onclick="hideSummary()" class="btn">Fermer</button>
         </div>
     </div>
-    <footer>Copyright © Realized by <a href="https://www.linkedin.com/in/kyo-kaizuka-84b030115" target="_blank">Kyo</a>
+    <footer>Copyright © Réalisé par <a href="https://www.linkedin.com/in/kyo-kaizuka-84b030115" target="_blank">Kyo</a>
     </footer>
 
     <script>
@@ -505,7 +517,7 @@
 
                             var textCat = document.createElement("h2")
                             textCat.setAttribute("class", "cat_title")
-                            textCat.setHTMLUnsafe(`▷ ${line.Categorie}`)
+                            textCat.innerHTML = `▷ ${line.Categorie}`
                             cats.appendChild(textCat)
 
                             var catContainer = document.createElement("div")
@@ -518,7 +530,7 @@
                             textCat.addEventListener("click", function () {
                                 catContainer.classList.toggle("hide")
                                 var txtcat = catContainer.classList.contains("hide") ? `▷ ${line.Categorie}` : `▽ ${line.Categorie}`
-                                textCat.setHTMLUnsafe(txtcat)
+                                textCat.innerHTML = txtcat
                             })
 
                             cats.appendChild(catContainer)
@@ -578,7 +590,7 @@
             exeDiv.setAttribute("class", "exe")
 
             var textExe = document.createElement("h3")
-            textExe.setHTMLUnsafe(obj.Exercice)
+            textExe.innerHTML = obj.Exercice
             exeDiv.appendChild(textExe)
 
             switch (obj.Unite) {
@@ -593,7 +605,7 @@
 
 
                     var textMin = document.createElement("h4")
-                    textMin.setHTMLUnsafe("min")
+                    textMin.innerHTML = "min"
                     exeDiv.appendChild(textMin)
 
                     var inputSec = document.createElement("input")
@@ -604,7 +616,7 @@
                     exeDiv.appendChild(inputSec)
 
                     var textSec = document.createElement("h4")
-                    textSec.setHTMLUnsafe("s")
+                    textSec.innerHTML = ("s")
                     exeDiv.appendChild(textSec)
                     break;
 
@@ -618,7 +630,7 @@
                     exeDiv.appendChild(input)
 
                     var unite = document.createElement("h4")
-                    unite.setHTMLUnsafe(obj.Unite)
+                    unite.innerHTML = (obj.Unite)
                     exeDiv.appendChild(unite)
                     break;
             }
@@ -627,18 +639,18 @@
         }
 
         function submit() {
-            container_summary.setHTMLUnsafe('')
+            container_summary.innerHTML = ('')
 
             var age = input_age.value
             var sexe = input_sexe.checked ? 'F' : 'H'
 
 
             var textDate = document.createElement("p")
-            textDate.setHTMLUnsafe(`Sommaire du ${input_date.value}`)
+            textDate.innerHTML = (`Sommaire du ${input_date.value}`)
             container_summary.appendChild(textDate)
 
             var textNom = document.createElement("p")
-            textNom.setHTMLUnsafe(`Pour ${input_name.value} (${age}) : ${sexe}`)
+            textNom.innerHTML = (`Pour ${input_name.value} (${age}) : ${sexe}`)
             container_summary.appendChild(textNom)
 
 
@@ -668,7 +680,7 @@
 
                     var exeDiv = document.createElement("div")
                     var textExe = document.createElement("h3")
-                    textExe.setHTMLUnsafe(text_result)
+                    textExe.innerHTML = (text_result)
                     exeDiv.appendChild(textExe)
 
                     const indices = csv.filter((i) => cat_exe.Categorie === i.Categorie && cat_exe.Exercice === i.Exercice && i.Sexe === sexe)
@@ -694,7 +706,7 @@
                             color = "green"
                         }
                         textDesc.setAttribute("class", color)
-                        textDesc.setHTMLUnsafe(desc)
+                        textDesc.innerHTML = (desc)
                         exeDiv.appendChild(textDesc)
 
                         container_summary.appendChild(exeDiv)
