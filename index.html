@@ -559,8 +559,7 @@
                     .split(regex);
                 const obj = {};
                 for (let j = 0; j < headers.length; j++) {
-                    obj[headers[j]
-                        .trim()] = values[j]
+                    obj[headers[j].trim()] = String(values[j]).charAt(0).toUpperCase() + String(values[j]).slice(1) // Capitalize first letter
                 }
                 jsonData.push(obj);
             }
