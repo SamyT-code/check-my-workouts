@@ -1,19 +1,17 @@
 Categorie,Exercice,Age,Sexe,Red,Orange,Yellow,Blue,Green,Unite
-Force et endurance haut du corps,push genou,19,H,0,17,21,30,39,rep
-Force et endurance haut du corps,push genou,29,H,0,17,21,30,39,rep
-Force et endurance haut du corps,push genou,19,F,0,17,21,30,39,rep
-Force et endurance haut du corps,push genou,29,F,0,17,21,30,39,rep
-Force et endurance haut du corps,push up,19,H,0,30,40,60,80,rep
-Force et endurance haut du corps,push up,29,H,0,30,40,60,80,rep
-Force et endurance haut du corps,push up,19,F,0,30,40,60,80,rep
-Force et endurance haut du corps,push up,29,F,0,30,40,60,80,rep
-Capacité cardio vasculaire,cardio,19,H,1,30,40,60,80,sec
-Capacité cardio vasculaire,cardio,29,H,0,30,40,60,80,sec
-Capacité cardio vasculaire,cardio,19,F,0,30,40,60,80,sec
-Capacité cardio vasculaire,cardio,29,F,0,30,40,60,80,sec
-Force et endurance haut du corps,Chin up,19,H,0,1,2,3,4,rep
-Force et endurance haut du corps,Chin up,19,F,0,2,4,6,8,rep
-Habitude de vie,Alimentation,19,F,0,40,60,90,95,points
-Habitude de vie,Alimentation,19,H,0,40,60,90,95,points
+Endurance haut du corps,push genou,19,H,0,17,21,30,39,rep
+Endurance haut du corps,push genou,29,H,0,17,21,30,39,rep
+Endurance haut du corps haut du corps,push genou,19,F,0,17,21,30,39,rep
+Endurance haut du corps haut du corps,push genou,29,F,0,17,21,30,39,rep
+Endurance haut du corps haut du corps,push up,19,H,0,30,40,60,80,rep
+Endurance haut du corps haut du corps,push up,29,H,0,30,40,60,80,rep
+Endurance haut du corps haut du corps,push up,19,F,0,30,40,60,80,rep
+Endurance haut du corps haut du corps,push up,29,F,0,30,40,60,80,rep
+Endurance haut du corps haut du corps,Chin up,19,H,0,1,2,3,4,rep
+Endurance haut du corps haut du corps,Chin up,19,F,0,2,4,6,8,rep
+Endurance haut du corps haut du corps,Suspension,19,H,0,1,2,3,4,sec
+Endurance haut du corps haut du corps,Suspension,19,F,0,2,4,6,8,sec
 Capacité cardio vasculaire,cooper,29,F,0,2000,2300,2600,2800,m
 Capacité cardio vasculaire,cooper,29,H,0,2300,2600,2800,3000,m
+Capacité cardio vasculaire,3km,29,F,0,15.5,17,18.5,20,min
+Capacité cardio vasculaire,3km,29,H,0,13.5,15,16.5,18,min
