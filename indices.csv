@@ -13,5 +13,5 @@ Endurance haut du corps haut du corps,Suspension,19,H,0,1,2,3,4,sec
 Endurance haut du corps haut du corps,Suspension,19,F,0,15,30,45,60,sec
 Capacité cardio vasculaire,cooper,29,F,0,2000,2300,2600,2800,m
 Capacité cardio vasculaire,cooper,29,H,0,2300,2600,2800,3000,m
-Capacité cardio vasculaire,3km,29,F,20,18.5,17,15.5,0,min
-Capacité cardio vasculaire,3km,29,H,18,16.5,15,13.5,0,min
+Capacité cardio vasculaire,3km,29,F,0,810,900,990,1080,sec
+Capacité cardio vasculaire,3km,29,H,1080,990,900,810,0,sec
