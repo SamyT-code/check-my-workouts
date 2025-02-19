@@ -1,17 +1,19 @@
 Categorie,Exercice,Age,Sexe,Red,Orange,Yellow,Blue,Green,Unite
 Endurance haut du corps,push genou,19,H,0,17,21,30,39,rep
-Endurance haut du corps,push genou,29,H,0,17,21,30,39,rep
-Endurance haut du corps haut du corps,push genou,19,F,0,17,21,30,39,rep
-Endurance haut du corps haut du corps,push genou,29,F,0,17,21,30,39,rep
-Endurance haut du corps haut du corps,push up,19,H,0,30,40,60,80,rep
-Endurance haut du corps haut du corps,push up,29,H,0,30,40,60,80,rep
-Endurance haut du corps haut du corps,push up,19,F,0,30,40,60,80,rep
-Endurance haut du corps haut du corps,push up,29,F,0,30,40,60,80,rep
-Endurance haut du corps haut du corps,Chin up,19,H,0,1,2,3,4,rep
-Endurance haut du corps haut du corps,Chin up,19,F,0,2,4,6,8,rep
-Endurance haut du corps haut du corps,Suspension,19,H,0,1,2,3,4,sec
-Endurance haut du corps haut du corps,Suspension,19,F,0,15,30,45,60,sec
+Endurance haut du corps,push genou,19,F,0,17,21,30,39,rep
+Endurance haut du corps,push up,19,H,0,30,40,60,80,rep
+Endurance haut du corps,push up,19,F,0,30,40,60,80,rep
+Endurance haut du corps,Chin up,19,F,0,1,2,3,4,rep
+Endurance haut du corps,Chin up,19,H,0,3,6,9,11,rep
+Endurance haut du corps,Suspension,19,H,0,30,45,60,90,sec
+Endurance haut du corps,Suspension,19,F,0,15,30,45,60,sec
+Endurance bas du corps,squat,19,H,0,120,180,225,300,sec
+Endurance bas du corps,squat,19,F,0,120,180,225,300,sec
+Endurance bas du corps,chaise,19,H,0,30,45,60,90,sec
+Endurance bas du corps,chaise,19,F,0,15,30,45,60,sec
+Flexibilité bas du corps,flexion tronc,19,F,0,2,3,4,5,6,pt
+Flexibilité bas du corps,flexion tronc,19,H,0,1,2,3,4,5,pt
+Flexibilité haut du corps,mains dans le dos,19,F,0,2,3,4,5,6,pt
+Flexibilité haut du corps,mains dans le dos,19,H,0,1,2,3,4,5,pt
 Capacité cardio vasculaire,cooper,29,F,0,2000,2300,2600,2800,m
 Capacité cardio vasculaire,cooper,29,H,0,2300,2600,2800,3000,m
-Capacité cardio vasculaire,3km,29,F,0,810,900,990,1080,sec
-Capacité cardio vasculaire,3km,29,H,1000000,1080,990,900,810,sec
