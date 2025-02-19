@@ -11,9 +11,9 @@ Endurance bas du corps,squat,19,H,0,120,180,225,300,sec
 Endurance bas du corps,squat,19,F,0,120,180,225,300,sec
 Endurance bas du corps,chaise,19,H,0,30,45,60,90,sec
 Endurance bas du corps,chaise,19,F,0,15,30,45,60,sec
-Flexibilité bas du corps,flexion tronc,19,F,0,2,3,4,5,6,point
-Flexibilité bas du corps,flexion tronc,19,H,0,1,2,3,4,5,point
-Flexibilité haut du corps,mains dans le dos,19,F,0,2,3,4,5,6,point
-Flexibilité haut du corps,mains dans le dos,19,H,0,1,2,3,4,5,point
+Flexibilité bas du corps,flexion tronc,19,F,2,3,4,5,6,point
+Flexibilité bas du corps,flexion tronc,19,H,1,2,3,4,5,point
+Flexibilité haut du corps,mains dans le dos,19,F,2,3,4,5,6,point
+Flexibilité haut du corps,mains dans le dos,19,H,1,2,3,4,5,point
 Capacité cardio vasculaire,cooper,29,F,0,2000,2300,2600,2800,m
 Capacité cardio vasculaire,cooper,29,H,0,2300,2600,2800,3000,m
