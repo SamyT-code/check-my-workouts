@@ -13,7 +13,19 @@ Endurance bas du corps,chaise,19,H,0,30,45,60,90,sec
 Endurance bas du corps,chaise,19,F,0,15,30,45,60,sec
 Flexibilité bas du corps,flexion tronc,19,F,2,3,4,5,6,point
 Flexibilité bas du corps,flexion tronc,19,H,1,2,3,4,5,point
-Flexibilité haut du corps,mains dans le dos,19,F,2,3,4,5,6,point
+Flexibilité haut du corps,mains dans le dos,19,F,1,2,3,4,5,point
 Flexibilité haut du corps,mains dans le dos,19,H,1,2,3,4,5,point
-Capacité cardio vasculaire,cooper,29,F,0,2000,2300,2600,2800,m
-Capacité cardio vasculaire,cooper,29,H,0,2300,2600,2800,3000,m
+Puissance bas du corps,saut vertical,19,F,0,20,35,50,60,cm
+Puissance bas du corps,saut vertical,19,H,0,30,45,60,70,cm
+Puissance bas du corps,saut horizontal,19,F,0,100,130,160,190,cm
+Puissance bas du corps,saut horizontal,19,H,0,130,160,190,220,cm
+Coordination et équilibre,lancé de balle,19,H,0,15,20,30,36,rep
+Coordination et équilibre,lancé de balle,19,F,0,15,20,30,36,rep
+Force,préhention,19,H,0,90,96,104,114,Kg
+Force,préhention,19,F,0,50,58,62,68,Kg
+Capacité cardio vasculaire,cooper course,29,F,0,2000,2300,2600,2800,m
+Capacité cardio vasculaire,cooper course,29,H,0,2300,2600,2800,3000,m
+Capacité cardio vasculaire,cooper nage,29,F,0,2000,2300,2600,2800,m
+Capacité cardio vasculaire,cooper nage,29,H,0,2300,2600,2800,3000,m
+Capacité cardio vasculaire,cooper vélo,29,F,0,1600,3300,4900,6400,m
+Capacité cardio vasculaire,cooper vélo,29,H,0,3200,4900,6500,7900,m
