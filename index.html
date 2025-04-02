@@ -373,6 +373,27 @@
             font-weight: bold;
             text-decoration: underline !important;
         }
+
+        .radio-container {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .radio-container input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .radio-container label {
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        input:disabled {
+            opacity: 0.5;
+            background-color: #111;
+        }
     </style>
 </head>
 
@@ -445,6 +466,11 @@
 
         var summary = document.getElementById("summary_full")
         var container_summary = document.getElementById("container_summary")
+
+        var mutuallyExclusiveGroups = [
+            ["Push genou", "Push up"],  // First group
+            // You can add more groups later if needed
+        ];
 
 
         // (async () => {
@@ -586,58 +612,136 @@
         }
 
         function createExe(obj) {
+            var exeDiv = document.createElement("div");
+            exeDiv.setAttribute("id", encode(obj.Exercice));
+            exeDiv.setAttribute("class", "exe");
 
-            var exeDiv = document.createElement("div")
-            exeDiv.setAttribute("id", encode(obj.Exercice))
-            exeDiv.setAttribute("class", "exe")
+            // Check if this exercise is part of a mutually exclusive group
+            let isExclusiveExercise = false;
+            let groupIndex = -1;
+            let groupName = "";
+            
+            for (let i = 0; i < mutuallyExclusiveGroups.length; i++) {
+                if (mutuallyExclusiveGroups[i].includes(obj.Exercice)) {
+                    isExclusiveExercise = true;
+                    groupIndex = i;
+                    groupName = `exclusive_group_${i}`;
+                    break;
+                }
+            }
 
-            var textExe = document.createElement("h3")
-            textExe.innerHTML = obj.Exercice
-            exeDiv.appendChild(textExe)
+            // For exclusive exercises, add a radio button
+            if (isExclusiveExercise) {
+                var radioContainer = document.createElement("div");
+                radioContainer.setAttribute("class", "radio-container");
+                
+                var radioInput = document.createElement("input");
+                radioInput.setAttribute("type", "radio");
+                radioInput.setAttribute("name", groupName);
+                radioInput.setAttribute("id", `radio_${encode(obj.Exercice)}`);
+                radioInput.setAttribute("value", obj.Exercice);
+                
+                // Add event listener to the radio button
+                radioInput.addEventListener("change", function() {
+                    // Enable inputs for this exercise
+                    handleExclusiveSelection(groupIndex, obj.Exercice);
+                });
+                
+                radioContainer.appendChild(radioInput);
+                
+                var radioLabel = document.createElement("label");
+                radioLabel.setAttribute("for", `radio_${encode(obj.Exercice)}`);
+                radioLabel.innerText = "Select";
+                radioContainer.appendChild(radioLabel);
+                
+                exeDiv.appendChild(radioContainer);
+            }
+
+            var textExe = document.createElement("h3");
+            textExe.innerHTML = obj.Exercice;
+            exeDiv.appendChild(textExe);
 
             switch (obj.Unite) {
                 case "sec":
+                    var inputMin = document.createElement("input");
+                    inputMin.setAttribute("type", "number");
+                    inputMin.setAttribute("id", `input_${encode(obj.Exercice)}_min`);
+                    inputMin.value = 0;
+                    inputMin.addEventListener('focus', () => inputMin.select());
+                    
+                    // If it's an exclusive exercise, initially disable it
+                    if (isExclusiveExercise) {
+                        inputMin.setAttribute("disabled", "true");
+                        inputMin.setAttribute("data-exclusive-group", groupIndex);
+                    }
+                    
+                    exeDiv.appendChild(inputMin);
 
-                    var inputMin = document.createElement("input")
-                    inputMin.setAttribute("type", "number")
-                    inputMin.setAttribute("id", `input_${encode(obj.Exercice)}_min`)
-                    inputMin.value = 0
-                    inputMin.addEventListener('focus', () => inputMin.select())
-                    exeDiv.appendChild(inputMin)
+                    var textMin = document.createElement("h4");
+                    textMin.innerHTML = "min";
+                    exeDiv.appendChild(textMin);
 
+                    var inputSec = document.createElement("input");
+                    inputSec.setAttribute("type", "number");
+                    inputSec.setAttribute("id", `input_${encode(obj.Exercice)}_sec`);
+                    inputSec.value = 0;
+                    inputSec.addEventListener('focus', () => inputSec.select());
+                    
+                    // If it's an exclusive exercise, initially disable it
+                    if (isExclusiveExercise) {
+                        inputSec.setAttribute("disabled", "true");
+                        inputSec.setAttribute("data-exclusive-group", groupIndex);
+                    }
+                    
+                    exeDiv.appendChild(inputSec);
 
-                    var textMin = document.createElement("h4")
-                    textMin.innerHTML = "min"
-                    exeDiv.appendChild(textMin)
-
-                    var inputSec = document.createElement("input")
-                    inputSec.setAttribute("type", "number")
-                    inputSec.setAttribute("id", `input_${encode(obj.Exercice)}_sec`)
-                    inputSec.value = 0
-                    inputSec.addEventListener('focus', () => inputSec.select())
-                    exeDiv.appendChild(inputSec)
-
-                    var textSec = document.createElement("h4")
-                    textSec.innerHTML = ("s")
-                    exeDiv.appendChild(textSec)
+                    var textSec = document.createElement("h4");
+                    textSec.innerHTML = ("s");
+                    exeDiv.appendChild(textSec);
                     break;
 
                 case "rep":
                 default:
-                    var input = document.createElement("input")
-                    input.setAttribute("type", "number")
-                    input.setAttribute("id", `input_${encode(obj.Exercice)}`)
-                    input.value = 0
-                    input.addEventListener('focus', () => input.select())
-                    exeDiv.appendChild(input)
+                    var input = document.createElement("input");
+                    input.setAttribute("type", "number");
+                    input.setAttribute("id", `input_${encode(obj.Exercice)}`);
+                    input.value = 0;
+                    input.addEventListener('focus', () => input.select());
+                    
+                    // If it's an exclusive exercise, initially disable it
+                    if (isExclusiveExercise) {
+                        input.setAttribute("disabled", "true");
+                        input.setAttribute("data-exclusive-group", groupIndex);
+                    }
+                    
+                    exeDiv.appendChild(input);
 
-                    var unite = document.createElement("h4")
-                    unite.innerHTML = (obj.Unite)
-                    exeDiv.appendChild(unite)
+                    var unite = document.createElement("h4");
+                    unite.innerHTML = (obj.Unite);
+                    exeDiv.appendChild(unite);
                     break;
             }
 
-            return exeDiv
+            return exeDiv;
+        }
+
+        // Add this new function to handle exclusive exercise selection
+        function handleExclusiveSelection(groupIndex, selectedExercise) {
+            // Get all input elements with the data-exclusive-group attribute matching this group
+            const inputs = document.querySelectorAll(`[data-exclusive-group="${groupIndex}"]`);
+            
+            inputs.forEach(input => {
+                // Enable input for the selected exercise, disable for others
+                const inputId = input.id;
+                const exerciseEncoded = inputId.split('_')[1]; // Extract exercise name from ID
+                
+                if (inputId.includes(encode(selectedExercise))) {
+                    input.removeAttribute("disabled");
+                } else {
+                    input.setAttribute("disabled", "true");
+                    input.value = 0; // Reset value when disabled
+                }
+            });
         }
 
         function submit() {
@@ -735,6 +839,7 @@
             }
         });
     </script>
+    <h1>HELLO</h1>
 </body>
 
 </html>
