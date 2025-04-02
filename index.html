@@ -2,68 +2,65 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Workouts</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
-    <!-- <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Workouts</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+  <!-- <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script> -->
 </head>
 
 <body>
-    <div id="main">
-        <noscript>
-            <h1>
-                <a href="https://www.enable-javascript.com/fr" target="_blank">Veuillez activer JavaScript pour utiliser cette application</a>
-            </h1>
-        </noscript>
-        <div class="row">
-            <h3>Date:</h3>
-            <input type="date" id="date">
-        </div>
-
-        <div class="row">
-            <h3>Ton nom:</h3>
-            <input type="text" id="name">
-        </div>
-        <div class="row">
-            <div id="container_age">
-                <h3 style="margin-right: 1em;">Âge: </h3>
-                <button class="incdec" onclick="document.getElementById('age').value--">-</button>
-                <input type="number" id="age" value="20" onclick="this.select();">
-                <button class="incdec" onclick="document.getElementById('age').value++">+</button>
-            </div>
-
-            <div id="container_switch">
-                <label id="switch">
-                    <input type="checkbox" id="sexe">
-                    <div id="tab">
-                        <div id="circle">
-                            <div id="gender"></div>
-                        </div>
-                    </div>
-                </label>
-            </div>
-        </div>
-
-        <div class="row"></div>
-
-        <div id="cats"></div>
-
-        <button id="submit" onclick="submit()" class="btn">Voir les résultats</button>
+  <div id="main">
+    <noscript>
+      <h1>
+        <a href="https://www.enable-javascript.com/fr" target="_blank">
+          Veuillez activer JavaScript pour utiliser cette application
+        </a>
+      </h1>
+    </noscript>
+    <div class="row">
+      <h3>Date:</h3>
+      <input type="date" id="date">
     </div>
-    <div id="summary_full" class="hide">
-        <div id="summary">
-            <div id="container_summary"></div>
-            <button id="close" onclick="hideSummary()" class="btn">Fermer</button>
-        </div>
+    <div class="row">
+      <h3>Ton nom:</h3>
+      <input type="text" id="name">
     </div>
-    <footer>
-        Copyright © Réalisé par 
-        <a href="https://www.linkedin.com/in/kyo-kaizuka-84b030115" target="_blank">Kyo</a>
-    </footer>
-    <script src="script.js"></script>
+    <div class="row">
+      <div id="container_age">
+        <h3 style="margin-right: 1em;">Âge: </h3>
+        <button class="incdec" onclick="document.getElementById('age').value--">-</button>
+        <input type="number" id="age" value="20" onclick="this.select();">
+        <button class="incdec" onclick="document.getElementById('age').value++">+</button>
+      </div>
+      <div id="container_switch">
+        <label id="switch">
+          <input type="checkbox" id="sexe">
+          <div id="tab">
+            <div id="circle">
+              <div id="gender"></div>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+    <!-- The dynamically generated category containers will appear below -->
+    <div id="cats"></div>
+    <button id="submit" onclick="submit()" class="btn">Voir les résultats</button>
+  </div>
+  <div id="summary_full" class="hide">
+    <div id="summary">
+      <div id="container_summary"></div>
+      <button id="close" onclick="hideSummary()" class="btn">Fermer</button>
+    </div>
+  </div>
+  <footer>
+    Copyright © Réalisé par 
+    <a href="https://www.linkedin.com/in/kyo-kaizuka-84b030115" target="_blank">Kyo</a>
+  </footer>
+  <script src="script.js"></script>
 </body>
 
 </html>
