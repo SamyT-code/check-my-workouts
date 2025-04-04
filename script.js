@@ -101,7 +101,7 @@ function insertExclusiveOptionSelector(category, groupIndex) {
     optionDiv.setAttribute("data-group", groupIndex);
     // Unique radio name per category and group
     var radioName = "exclusiveOptions_" + encode(category) + "_" + groupIndex;
-    // Set the default checked attribute on the first option (i.e. mutuallyExclusiveGroups[groupIndex][0])
+    // Set default checked on the first option
     optionDiv.innerHTML = `<p class="option-title">Sélectionnez une option</p>
       <div class="option-buttons">
          <label class="option-label">
@@ -118,9 +118,8 @@ function insertExclusiveOptionSelector(category, groupIndex) {
         updateExclusiveDisplayForCategoryAndGroup(category, groupIndex);
       });
     });
-    // Insert the option selector at the top of the category container
     catContainer.insertBefore(optionDiv, catContainer.firstChild);
-    // Update display based on the default checked option
+    // Immediately update display so only the default is shown
     updateExclusiveDisplayForCategoryAndGroup(category, groupIndex);
   }
 }
@@ -134,7 +133,6 @@ function updateExclusiveDisplayForCategoryAndGroup(category, groupIndex) {
     'input[name="' + radioName + '"]:checked'
   );
   var selectedValue = selectedRadio ? selectedRadio.value : null;
-  // For each exclusive exercise in this container for this group, show only if it matches the selected value
   catContainer
     .querySelectorAll(`.exe[data-exclusive='true'][data-group='${groupIndex}']`)
     .forEach(function (exeDiv) {
@@ -185,12 +183,11 @@ function isCatExeInArray(array, cat_exe) {
   return 3;
 }
 
-// Create the exercise element; if it belongs to a mutually exclusive group, mark it with data attributes
+// Create the exercise element; if it belongs to a mutually exclusive group, only show it if it is the default
 function createExe(obj) {
   var exeDiv = document.createElement("div");
   exeDiv.setAttribute("id", encode(obj.Exercice));
   exeDiv.setAttribute("class", "exe");
-  // Check if the exercise belongs to any mutually exclusive group
   var groupIndex = -1;
   for (let g = 0; g < mutuallyExclusiveGroups.length; g++) {
     if (mutuallyExclusiveGroups[g].includes(obj.Exercice)) {
@@ -202,6 +199,10 @@ function createExe(obj) {
     exeDiv.setAttribute("data-exclusive", "true");
     exeDiv.setAttribute("data-group", groupIndex);
     exeDiv.setAttribute("data-exercise", obj.Exercice);
+    // Only display the default option on load
+    if (obj.Exercice !== mutuallyExclusiveGroups[groupIndex][0]) {
+      exeDiv.style.display = "none";
+    }
   }
   var textExe = document.createElement("h3");
   textExe.innerHTML = obj.Exercice;
