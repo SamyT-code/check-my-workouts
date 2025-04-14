@@ -113,6 +113,7 @@ function insertExclusiveOptionSelector(category, groupIndex) {
              ${mutuallyExclusiveGroups[groupIndex][1]}
          </label>
       </div>`;
+    // If we want to change the selection to have more radio buttons, we need to change the above code
     optionDiv.querySelectorAll('input[type="radio"]').forEach((radio) => {
       radio.addEventListener("change", function () {
         updateExclusiveDisplayForCategoryAndGroup(category, groupIndex);
