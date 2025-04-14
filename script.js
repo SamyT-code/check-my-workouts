@@ -1,3 +1,12 @@
+// Define mutually exclusive groups as an array of arrays (feel free to add as many as you want)
+// Group 0: "Push genou" (default) and "Push up"
+// Group 1: "Cooper course" (default) and "Cooper nage and Cooper velo"
+var mutuallyExclusiveGroups = [
+  ["Push genou", "Push up"],
+  ["Cooper course", "Cooper nage", "Cooper vélo"],
+];
+// To add new mutually exclusive exercises, simply add a them to the array above. ex: ,["Saut vertical", "Saut horizontal"]
+
 // Global element references
 var cats = document.getElementById("cats");
 var input_date = document.getElementById("date");
@@ -12,14 +21,6 @@ var input_age = document.getElementById("age");
 var input_sexe = document.getElementById("sexe");
 var summary = document.getElementById("summary_full");
 var container_summary = document.getElementById("container_summary");
-
-// Define mutually exclusive groups as an array of arrays
-// Group 0: "Push genou" (default) and "Push up"
-// Group 1: "Cooper course" (default) and "Cooper nage"
-var mutuallyExclusiveGroups = [
-  ["Push genou", "Push up"],
-  ["Cooper course", "Cooper nage"],
-];
 
 var cat_exes = [];
 var csv;
@@ -101,26 +102,33 @@ function insertExclusiveOptionSelector(category, groupIndex) {
     optionDiv.setAttribute("data-group", groupIndex);
     // Unique radio name per category and group
     var radioName = "exclusiveOptions_" + encode(category) + "_" + groupIndex;
-    // Set default checked on the first option
-    optionDiv.innerHTML = `<p class="option-title">Sélectionnez une option</p>
-      <div class="option-buttons">
-         <label class="option-label">
-             <input type="radio" name="${radioName}" value="${mutuallyExclusiveGroups[groupIndex][0]}" checked>
-             ${mutuallyExclusiveGroups[groupIndex][0]}
-         </label>
-         <label class="option-label">
-             <input type="radio" name="${radioName}" value="${mutuallyExclusiveGroups[groupIndex][1]}">
-             ${mutuallyExclusiveGroups[groupIndex][1]}
-         </label>
-      </div>`;
-    // If we want to change the selection to have more radio buttons, we need to change the above code
-    optionDiv.querySelectorAll('input[type="radio"]').forEach((radio) => {
+
+    var optionsHTML =
+      '<p class="option-title">Sélectionnez une option</p><div class="option-buttons">';
+    mutuallyExclusiveGroups[groupIndex].forEach(function (exercise, i) {
+      var checked = i === 0 ? "checked" : "";
+      optionsHTML +=
+        '<label class="option-label">' +
+        '<input type="radio" name="' +
+        radioName +
+        '" value="' +
+        exercise +
+        '" ' +
+        checked +
+        ">" +
+        exercise +
+        "</label>";
+    });
+    optionsHTML += "</div>";
+    optionDiv.innerHTML = optionsHTML;
+
+    optionDiv.querySelectorAll('input[type="radio"]').forEach(function (radio) {
       radio.addEventListener("change", function () {
         updateExclusiveDisplayForCategoryAndGroup(category, groupIndex);
       });
     });
+
     catContainer.insertBefore(optionDiv, catContainer.firstChild);
-    // Immediately update display so only the default is shown
     updateExclusiveDisplayForCategoryAndGroup(category, groupIndex);
   }
 }
