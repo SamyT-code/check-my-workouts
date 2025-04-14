@@ -5,3 +5,29 @@ Ex: Squat le temps le plus petit le mieux. pour la chaise, le contraire
 changer le code pour que le array verifie si le premier threshold est plus grand que le dernier ou vice-versa
 
 Prendre en compte l'age en tranche de 10, à partir de 10 ans
+
+Here is how the reverse order works:
+
+Based on your reversed thresholds for squats—using the CSV line
+
+  Endurance bas du corps,squat,19,H,300,225,180,120,10,sec
+
+we have the following values extracted (as numbers):
+
+• Red = 300
+• Orange = 225
+• Yellow = 180
+• Blue = 120
+• Green = 10
+
+Since this is a reversed case (Red > Green), the modified reversed logic checks the performance as follows:
+
+If exe_value ≤ Green (10) → Excellent (green)
+
+Else if exe_value ≤ Blue (120) → Très bien (blue)
+
+Else if exe_value ≤ Yellow (180) → Bien (yellow)
+
+Else if exe_value ≤ Orange (225) → Risques accrus (orange)
+
+Else (if exe_value > 225) → Problématique (red)

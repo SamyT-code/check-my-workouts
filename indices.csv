@@ -7,8 +7,8 @@ Endurance haut du corps,Chin up,19,F,0,1,2,3,4,rep
 Endurance haut du corps,Chin up,19,H,0,3,6,9,11,rep
 Endurance haut du corps,Suspension,19,H,0,30,45,60,90,sec
 Endurance haut du corps,Suspension,19,F,0,15,30,45,60,sec
-Endurance bas du corps,squat,19,H,0,120,180,225,300,sec
-Endurance bas du corps,squat,19,F,0,120,180,225,300,sec
+Endurance bas du corps,squat,19,H,300,225,180,120,10,sec
+Endurance bas du corps,squat,19,F,300,225,180,120,0,sec
 Endurance bas du corps,chaise,19,H,0,60,120,180,240,sec
 Endurance bas du corps,chaise,19,F,0,30,70,110,150,sec
 Endurance abdominale,planche frontale,19,H,0,90,135,180,225,sec

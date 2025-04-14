@@ -5,7 +5,7 @@ var mutuallyExclusiveGroups = [
   ["Push genou", "Push up"],
   ["Cooper course", "Cooper nage", "Cooper vélo"],
 ];
-// To add new mutually exclusive exercises, simply add a them to the array above. ex: ,["Saut vertical", "Saut horizontal"]
+// To add new mutually exclusive exercises, simply add a them to the array above. ex: ["Saut vertical", "Saut horizontal"]
 
 // Global element references
 var cats = document.getElementById("cats");
@@ -26,9 +26,7 @@ var cat_exes = [];
 var csv;
 
 // Fetch and process CSV data
-JSC.fetch(
-  "https://raw.githubusercontent.com/kyocanada/check-my-workouts/master/indices.csv"
-)
+JSC.fetch("./indices.csv")
   .then((response) => response.text())
   .then((text) => {
     csv = csvToJsonRegex(text);
@@ -265,6 +263,7 @@ function submit() {
   container_summary.appendChild(textNom);
   var desc = "";
   var color = "";
+
   cat_exes.forEach((cat_exe) => {
     var exe_value = 0;
     var text_result = "";
@@ -287,11 +286,18 @@ function submit() {
         text_result = `${cat_exe.Exercice}:  ${exe_value} ${cat_exe.Unite}`;
         break;
     }
+
+    // Log the computed value for debugging.
+    console.log(
+      `DEBUG: Computed exe_value for ${cat_exe.Exercice} is ${exe_value}`
+    );
+
     if (exe_value > 0) {
       var exeDiv = document.createElement("div");
       var textExe = document.createElement("h3");
       textExe.innerHTML = text_result;
       exeDiv.appendChild(textExe);
+
       const indices = csv.filter(
         (i) =>
           cat_exe.Categorie === i.Categorie &&
@@ -301,21 +307,86 @@ function submit() {
       if (indices.length > 0) {
         var textDesc = document.createElement("h3");
         var indice = indices[0];
-        if (exe_value < indice.Orange) {
-          desc = "Problématique";
-          color = "red";
-        } else if (exe_value < indice.Yellow) {
-          desc = "Risques accrus";
-          color = "orange";
-        } else if (exe_value < indice.Blue) {
-          desc = "Bien";
-          color = "yellow";
-        } else if (exe_value < indice.Green) {
-          desc = "Très bien";
-          color = "blue";
+
+        // Convert threshold values to numbers
+        var redVal = parseFloat(indice.Red);
+        var orangeVal = parseFloat(indice.Orange);
+        var yellowVal = parseFloat(indice.Yellow);
+        var blueVal = parseFloat(indice.Blue);
+        var greenVal = parseFloat(indice.Green);
+
+        // Determine if the thresholds are reversed (lower is better)
+        var isReversed = redVal > greenVal;
+        console.log(
+          `DEBUG: ${cat_exe.Exercice} thresholds: Red=${redVal}, Orange=${orangeVal}, Yellow=${yellowVal}, Blue=${blueVal}, Green=${greenVal}. isReversed=${isReversed}`
+        );
+
+        if (!isReversed) {
+          // Standard logic (higher is better)
+          if (exe_value < orangeVal) {
+            console.log(
+              `EXPECTED: ${exe_value} < Orange (${orangeVal}) for standard logic. ACTUAL: Condition met.`
+            );
+            desc = "Problématique";
+            color = "red";
+          } else if (exe_value < yellowVal) {
+            console.log(
+              `EXPECTED: ${exe_value} < Yellow (${yellowVal}) for standard logic. ACTUAL: Condition met.`
+            );
+            desc = "Risques accrus";
+            color = "orange";
+          } else if (exe_value < blueVal) {
+            console.log(
+              `EXPECTED: ${exe_value} < Blue (${blueVal}) for standard logic. ACTUAL: Condition met.`
+            );
+            desc = "Bien";
+            color = "yellow";
+          } else if (exe_value < greenVal) {
+            console.log(
+              `EXPECTED: ${exe_value} < Green (${greenVal}) for standard logic. ACTUAL: Condition met.`
+            );
+            desc = "Très bien";
+            color = "blue";
+          } else {
+            console.log(
+              `EXPECTED: ${exe_value} >= Green (${greenVal}) for standard logic. ACTUAL: Condition met.`
+            );
+            desc = "Excellent";
+            color = "green";
+          }
         } else {
-          desc = "Excellent";
-          color = "green";
+          // Reversed logic (lower is better)
+          if (exe_value <= greenVal) {
+            console.log(
+              `EXPECTED: ${exe_value} <= Green (${greenVal}) for reversed logic. ACTUAL: Condition met.`
+            );
+            desc = "Excellent";
+            color = "green";
+          } else if (exe_value <= blueVal) {
+            console.log(
+              `EXPECTED: ${exe_value} <= Blue (${blueVal}) for reversed logic. ACTUAL: Condition met.`
+            );
+            desc = "Très bien";
+            color = "blue";
+          } else if (exe_value <= yellowVal) {
+            console.log(
+              `EXPECTED: ${exe_value} <= Yellow (${yellowVal}) for reversed logic. ACTUAL: Condition met.`
+            );
+            desc = "Bien";
+            color = "yellow";
+          } else if (exe_value <= orangeVal) {
+            console.log(
+              `EXPECTED: ${exe_value} <= Orange (${orangeVal}) for reversed logic. ACTUAL: Condition met.`
+            );
+            desc = "Risques accrus";
+            color = "orange";
+          } else {
+            console.log(
+              `EXPECTED: ${exe_value} > Orange (${orangeVal}) for reversed logic. ACTUAL: Condition met.`
+            );
+            desc = "Problématique";
+            color = "red";
+          }
         }
         textDesc.setAttribute("class", color);
         textDesc.innerHTML = desc;
