@@ -6,6 +6,7 @@ var mutuallyExclusiveGroups = [
   ["Cooper course", "Cooper nage", "Cooper vélo"],
 ];
 // To add new mutually exclusive exercises, simply add a them to the array above. ex: ["Saut vertical", "Saut horizontal"]
+// NOTE: THERE MAY STILL BE SOME WORK TO DO FOR THIS IF THE GROUPS ARE PART OF THE SAME SUBSECTION
 
 // Global element references
 var cats = document.getElementById("cats");
