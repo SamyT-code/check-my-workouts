@@ -3,6 +3,7 @@
 // Group 1: "Cooper course" (default) and "Cooper nage and Cooper velo"
 var mutuallyExclusiveGroups = [
   ["Push genou", "Push up"],
+  ["Chin up", "Suspension"],
   ["Cooper course", "Cooper nage", "Cooper vélo"],
 ];
 // To add new mutually exclusive exercises, simply add a them to the array above. ex: ["Saut vertical", "Saut horizontal"]
