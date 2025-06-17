@@ -1,4 +1,4 @@
-Ajouter cooper velo parmis les radio buttons, do not hard code the array. look into easily adding radio button selection
+There is a problem with the sorting of arrays when a selection must be made within a sub category. FIX THIS
 
 Pour n'importe quel exercice, changer le code pour qu'il vérifie si les threshold sont de plus en plus grand ou de plus en plus petit.
 Ex: Squat le temps le plus petit le mieux. pour la chaise, le contraire
