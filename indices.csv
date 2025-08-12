@@ -13,6 +13,10 @@ Endurance bas du corps,chaise,19,H,0,60,120,180,240,sec
 Endurance bas du corps,chaise,19,F,0,30,70,110,150,sec
 Endurance abdominale,planche frontale,19,H,0,90,135,180,225,sec
 Endurance abdominale,planche frontale,19,F,0,30,70,110,150,sec
+Endurance abdominale,planche latéral,19,H,0,124,163,233,273,sec
+Endurance abdominale,planche latérale,19,F,0,66,96,138,202,sec
+Endurance abdominale,redressements,19,H,0,36,41,50,58,sec
+Endurance abdominale,redressements,19,F,0,34,40,48,57,sec
 Flexibilité bas du corps,flexion tronc,19,F,2,3,4,5,6,point
 Flexibilité bas du corps,flexion tronc,19,H,1,2,3,4,5,point
 Flexibilité haut du corps,mains dans le dos,19,F,1,2,3,4,5,point
