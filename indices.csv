@@ -23,10 +23,10 @@ Puissance bas du corps,saut horizontal,19,F,0,100,130,160,190,cm
 Puissance bas du corps,saut horizontal,19,H,0,130,160,190,220,cm
 Coordination,lancé de balle,19,H,0,15,20,30,36,rep
 Coordination,lancé de balle,19,F,0,15,20,30,36,rep
-équilibre,unipède yeux ouverts,19,H,0,44.5,44.6,44.7,60,rep
-équilibre,unipède yeux ouverts,19,F,0,45,45.1,45.2,60,rep
-équilibre,unipède yeux ouverts,19,H,0,16.8,16.9,17,30,rep
-équilibre,unipède yeux ouverts,19,F,0,13,13.1,13.2,30,rep
+équilibre,unipède yeux ouverts,19,H,0,44.5,44.6,44.7,60,sec
+équilibre,unipède yeux ouverts,19,F,0,45,45.1,45.2,60,sec
+équilibre,unipède yeux ouverts,19,H,0,16.8,16.9,17,30,sec
+équilibre,unipède yeux ouverts,19,F,0,13,13.1,13.2,30,sec
 Force,préhention,19,H,0,90,96,104,114,Kg
 Force,préhention,19,F,0,50,58,62,68,Kg
 Capacité cardio vasculaire,cooper course,29,F,0,2000,2300,2600,2800,m
