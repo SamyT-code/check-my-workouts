@@ -5,6 +5,11 @@ var mutuallyExclusiveGroups = [
   ["Push genou", "Push up"],
   ["Chin up", "Suspension"],
   ["Cooper course", "Cooper nage", "Cooper vélo"],
+  ["Squat", "Chaise"],
+  ["Planche frontale", "Planche latérale", "Redressements"],
+  ["Mains dans le dos", "Élévation du baton"],
+  ["Saut vertical", "Saut horizontal"],
+  ["Unipède yeux ouverts", "Unipède yeux fermés"],
 ];
 // To add new mutually exclusive exercises, simply add a them to the array above. ex: ["Saut vertical", "Saut horizontal"]
 // NOTE: THERE MAY STILL BE SOME WORK TO DO FOR THIS IF THE GROUPS ARE PART OF THE SAME SUBSECTION

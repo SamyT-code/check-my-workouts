@@ -13,16 +13,16 @@ Endurance bas du corps,chaise,19,H,0,60,120,180,240,sec
 Endurance bas du corps,chaise,19,F,0,30,70,110,150,sec
 Santé du dos,planche frontale,19,H,0,90,135,180,225,sec
 Santé du dos,planche frontale,19,F,0,30,70,110,150,sec
-Santé du dos,planche latéral,19,H,0,124,163,233,273,sec
+Santé du dos,planche latérale,19,H,0,124,163,233,273,sec
 Santé du dos,planche latérale,19,F,0,66,96,138,202,sec
 Santé du dos,redressements,19,H,0,36,41,50,58,rep
 Santé du dos,redressements,19,F,0,34,40,48,57,rep
 Santé du dos,extension lombaire,19,H,0,86,98,132,175,sec
 Santé du dos,extension lombaire,19,F,0,66,81,135,179,sec
-Flexibilité bas du corps,flexion tronc,19,F,2,3,4,5,6,point
-Flexibilité bas du corps,flexion tronc,19,H,1,2,3,4,5,point
-Flexibilité haut du corps,mains dans le dos,19,F,1,2,3,4,5,point
-Flexibilité haut du corps,mains dans le dos,19,H,1,2,3,4,5,point
+Flexibilité bas du corps,flexion tronc,19,F,2,3,4,5,6,points
+Flexibilité bas du corps,flexion tronc,19,H,1,2,3,4,5,points
+Flexibilité haut du corps,mains dans le dos,19,F,1,2,3,4,5,points
+Flexibilité haut du corps,mains dans le dos,19,H,1,2,3,4,5,points
 Flexibilité haut du corps,élévation du baton,19,F,0,10,20,30,32,cm
 Flexibilité haut du corps,élévation du baton,19,H,0,10,20,30,32,cm
 Puissance bas du corps,saut vertical,19,F,0,20,35,50,60,cm
